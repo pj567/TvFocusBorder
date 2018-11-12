@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.owen.focus.example.TvHorizontalScrollView
+        android:id="@+id/scroll_view_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tsv_scroller_duration="700"
+        app:tsv_selected_offset_end="30dp"
+        app:tsv_selected_offset_start="30dp"
+        app:tsv_is_selected_centered="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:padding="30dp"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:orientation="horizontal">
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:id="@+id/round_frame_layout_1"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="280dp"
+                app:rfl_radius="0dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:id="@+id/round_frame_layout_2"
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                app:rfl_radius="20dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:id="@+id/round_frame_layout_3"
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="280dp"
+                app:rfl_radius="40dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:id="@+id/round_frame_layout_4"
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                app:rfl_radius="60dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:id="@+id/round_frame_layout_5"
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                app:rfl_radius="90dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:id="@+id/round_frame_layout_6"
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="280dp"
+                app:rfl_radius="0dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:id="@+id/round_frame_layout_7"
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                app:rfl_radius="20dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:id="@+id/round_frame_layout_8"
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                app:rfl_radius="40dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:id="@+id/round_frame_layout_9"
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                app:rfl_radius="60dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:id="@+id/round_frame_layout_10"
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                app:rfl_radius="90dp"
+                android:background="#ed3"/>
+
+        </LinearLayout>
+
+    </com.owen.focus.example.TvHorizontalScrollView>
+
+    <com.owen.focus.example.TvHorizontalScrollView
+        app:tsv_selected_offset_end="30dp"
+        app:tsv_selected_offset_start="30dp"
+        app:layout_constraintTop_toBottomOf="@id/scroll_view_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:id="@+id/layout_2"
+            android:padding="30dp"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="280dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="280dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="280dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="280dp"
+                android:background="#ed3"/>
+
+            <com.owen.focus.example.RoundFrameLayout
+                android:layout_marginLeft="20dp"
+                android:focusable="true"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:background="#ed3"/>
+
+        </LinearLayout>
+
+    </com.owen.focus.example.TvHorizontalScrollView>
+
+</android.support.constraint.ConstraintLayout>

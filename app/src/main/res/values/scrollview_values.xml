@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TvHorizontalScrollView">
+        <!--选中item距离左或上的偏移量-->
+        <attr name="tsv_selected_offset_start" format="dimension"/>
+        <!--选中item距离右或下的偏移量-->
+        <attr name="tsv_selected_offset_end" format="dimension"/>
+        <!--是否选中的item居中，true时offset_start和offset_end将不再起作用-->
+        <attr name="tsv_is_selected_centered" format="boolean"/>
+        <!--滚动时长-->
+        <attr name="tsv_scroller_duration" format="integer"/>
+    </declare-styleable>
+</resources>
