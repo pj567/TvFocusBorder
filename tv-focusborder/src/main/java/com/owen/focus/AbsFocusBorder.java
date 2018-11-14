@@ -85,7 +85,8 @@ public abstract class AbsFocusBorder extends View implements FocusBorder, ViewTr
         }
         //关闭硬件加速
         setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        setVisibility(INVISIBLE);
+        setVisibility(VISIBLE);
+        setAlpha(0f);
         
         mShimmerPaint = new Paint();
         mShimmerGradientMatrix = new Matrix();
@@ -179,7 +180,8 @@ public abstract class AbsFocusBorder extends View implements FocusBorder, ViewTr
     public void setVisible(boolean visible) {
         if(mIsVisible != visible) {
             mIsVisible = visible;
-            setVisibility(visible ? VISIBLE : INVISIBLE);
+            
+            animate().alpha(visible ? 1f : 0f).setDuration(mAnimDuration).start();
             
             if(!visible && null != mOldFocusView && null != mOldFocusView.get()) {
                 runFocusScaleAnimation(mOldFocusView.get(), 1f, 1f);
@@ -214,9 +216,6 @@ public abstract class AbsFocusBorder extends View implements FocusBorder, ViewTr
     }
 
     protected Rect findLocationWithView(View view) {
-        /*ViewGroup root = (ViewGroup) getParent();
-        Rect rect = new Rect();
-        root.offsetDescendantRectToMyCoords(view, rect);*/
         return findOffsetDescendantRectToMyCoords(view);
     }
     
@@ -250,7 +249,6 @@ public abstract class AbsFocusBorder extends View implements FocusBorder, ViewTr
                 if (null != tag && tag instanceof Point) {
                     point = (Point) tag;
                     rect.offset(-point.x, -point.y);
-//                    Log.i("@!@!", "point.x="+point.x+" point.y="+point.y);
                 }
                 if(null == tag && rv.getScrollState() != RecyclerView.SCROLL_STATE_IDLE
                         && (mRecyclerViewScrollListener.mScrolledX != 0 || mRecyclerViewScrollListener.mScrolledY != 0)) {
@@ -285,6 +283,7 @@ public abstract class AbsFocusBorder extends View implements FocusBorder, ViewTr
         
         if(options instanceof Options) {
             restoreFocusBorder(oldFocus, focusView, (Options) options);
+            setVisible(true);
             runFocusAnimation(focusView, (Options) options);
             mOldFocusView = new WeakReference<>(focusView);
         }
@@ -319,20 +318,19 @@ public abstract class AbsFocusBorder extends View implements FocusBorder, ViewTr
 
     @Override
     public void onGlobalFocusChanged(View oldFocus, View newFocus) {
-        runFocusScaleAnimation(oldFocus, 1f, 1f);
         final Options options = null != mOnFocusCallback ? (Options) mOnFocusCallback.onFocus(oldFocus, newFocus) : null;
         if(null != options) {
-            restoreFocusBorder(oldFocus, newFocus, options);
-            runFocusAnimation(newFocus, options);
+            onFocus(newFocus, options);
         }
     }
 
     private void runFocusAnimation(View focusView, Options options) {
-        setVisible(true);
         mScaleX = options.scaleX;
         mScaleY = options.scaleY;
-        runFocusScaleAnimation(focusView, mScaleX, mScaleY); // 焦点缩放动画
-        runBorderAnimation(focusView, options); // 移动边框的动画。
+        // 焦点缩放动画
+        runFocusScaleAnimation(focusView, mScaleX, mScaleY);
+        // 移动边框的动画
+        runBorderAnimation(focusView, options);
     }
     
     protected void runBorderAnimation(View focusView, Options options) {
@@ -354,8 +352,7 @@ public abstract class AbsFocusBorder extends View implements FocusBorder, ViewTr
      * @param 
      */
     protected void runFocusScaleAnimation(@Nullable final View oldOrNewFocusView, final float scaleX, final float scaleY) {
-        if(null == oldOrNewFocusView
-                /*|| (oldOrNewFocusView.getScaleX() == scaleX && oldOrNewFocusView.getScaleY() == scaleY)*/) {
+        if(null == oldOrNewFocusView) {
             return;
         }
         oldOrNewFocusView.animate().scaleX(scaleX).scaleY(scaleY).setDuration(mAnimDuration).start();
@@ -367,7 +364,7 @@ public abstract class AbsFocusBorder extends View implements FocusBorder, ViewTr
         final float paddingHeight = mPaddingRectF.top + mPaddingRectF.bottom + mPaddingOfsetRectF.top + mPaddingOfsetRectF.bottom;
         final int offsetWidth = (int) (focusView.getMeasuredWidth() * (options.scaleX - 1f) + paddingWidth);
         final int offsetHeight = (int) (focusView.getMeasuredHeight() * (options.scaleY - 1f) + paddingHeight);
-        
+    
         final Rect fromRect = findLocationWithView(this);
         final Rect toRect = findLocationWithView(focusView);
         toRect.inset(-offsetWidth/2, -offsetHeight/2);
@@ -482,19 +479,15 @@ public abstract class AbsFocusBorder extends View implements FocusBorder, ViewTr
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             mScrolledX = Math.abs(dx) == 1 ? 0 : dx;
             mScrolledY = Math.abs(dy) == 1 ? 0 : dy;
-            Log.i("@!@!", "onScrolled...dx="+dx+" dy="+dy);
         }
 
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             if(newState == RecyclerView.SCROLL_STATE_IDLE) {
-                Log.i("@!@!", "onScrollStateChanged...IDLE");
                 final AbsFocusBorder border = mFocusBorder.get();
                 final View focused = recyclerView.getFocusedChild();
-//                Log.i("@!@!", "onScrollStateChanged...border is null = " + (null == border));
                 if(null != border && null != focused) {
                     if (border.mReAnim || mScrolledX != 0 || mScrolledY != 0) {
-                        Log.i("@!@!", "onScrollStateChanged...scleX = " + border.mScaleX + " scleY = "+border.mScaleY);
                         border.runBorderAnimation(focused, Options.get(border.mScaleX, border.mScaleY));
                     }
                 }
@@ -570,6 +563,20 @@ public abstract class AbsFocusBorder extends View implements FocusBorder, ViewTr
             this.mPaddingOffsetRectF.right = right;
             this.mPaddingOffsetRectF.bottom = bottom;
             return this;
+        }
+        
+        public FocusBorder build(android.app.Fragment fragment) {
+            if(null != fragment.getActivity()) {
+                return build(fragment.getActivity());
+            }
+            return build((ViewGroup) fragment.getView());
+        }
+        
+        public FocusBorder build(android.support.v4.app.Fragment fragment) {
+            if(null != fragment.getActivity()) {
+                return build(fragment.getActivity());
+            }
+            return build((ViewGroup) fragment.getView());
         }
 
         public abstract FocusBorder build(Activity activity);

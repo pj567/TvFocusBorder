@@ -99,7 +99,8 @@ public class MainActivity extends AppCompatActivity implements View.OnFocusChang
     
     private FocusBorder.Options createColorBorderOptions(int radius) {
         mDrawableFocusBorder.setVisible(false);
-        return FocusBorder.OptionsFactory.get(1f, 1f, dp2px(radius));
+        float scale = 1.2f;
+        return FocusBorder.OptionsFactory.get(scale, scale, dp2px(radius) * scale);
     }
     
     @Override

@@ -1,4 +1,4 @@
-package com.owen.focus.example;
+package com.owen.focus.example.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,10 +12,14 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
+import com.owen.focus.example.R;
+
 import static android.graphics.Canvas.ALL_SAVE_FLAG;
 
 /**
- * Created by owen on 2016/10/20.
+ *
+ * @author owen
+ * @date 2016/10/20
  * 
  */
 

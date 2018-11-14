@@ -1,4 +1,4 @@
-package com.owen.focus.example;
+package com.owen.focus.example.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,10 +10,14 @@ import android.view.animation.Interpolator;
 import android.widget.HorizontalScrollView;
 import android.widget.OverScroller;
 
+import com.owen.focus.example.R;
+
 import java.lang.reflect.Field;
 
 /**
- * Created by owen on 2016/10/21.
+ *
+ * @author owen
+ * @date 2016/10/21
  */
 
 public class TvHorizontalScrollView extends HorizontalScrollView {
