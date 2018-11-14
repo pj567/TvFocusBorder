@@ -11,8 +11,8 @@
 ![](https://github.com/zhousuqiang/TvFocusBorder/blob/master/image/focus3.gif)
 
 ### 使用
-    ```java
-    // 颜色焦点框
+```java
+    /** 颜色焦点框 */
     FocusBorder mColorFocusBorder = new FocusBorder.Builder().asColor()
             //阴影宽度(方法shadowWidth(18f)也可以设置阴影宽度)
             .shadowWidth(TypedValue.COMPLEX_UNIT_DIP, 20f)
@@ -55,7 +55,7 @@
     });
 
 
-    // 图片焦点框 
+    /** 图片焦点框 */
     FocusBorder mDrawableFocusBorder = new FocusBorder.Builder().asDrawable()
             .borderDrawableRes(R.mipmap.focus)
             .build(this);
@@ -70,7 +70,7 @@
         }
     });
 
-    ```
+```
 
 ### 更详细的使用请见exmaple
 
