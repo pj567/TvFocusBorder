@@ -4,10 +4,11 @@
 
 >* 支持[TvRecyclerView](https://github.com/zhousuqiang/TvRecyclerView)焦点移动;
 >* 支持颜色或图片作为焦点框;
+>* 支持焦点框圆角变化;
 
 ### 效果
 
-![](https://github.com/zhousuqiang/TvFocusBorder/blob/master/images/img_all.gif)
+![](https://github.com/zhousuqiang/TvFocusBorder/blob/master/images/focus3.gif)
 
 ### 使用
     ```java
