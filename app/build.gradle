@@ -28,4 +28,5 @@ dependencies {
 
     implementation 'me.jessyan:autosize:1.0.5'
     implementation project(":tv-focusborder")
+//    implementation 'com.owen:tv-focusborder:1.0.0'
 }
